@@ -85,6 +85,7 @@ function filter_tuple(t::Tuple)
         !(e isa NullByte || e isa ZeroCount)
     end
 end
+filter_tuple(x) = x
 
 function filter_tuple_type(T::Type{<: Tuple})
     t = filter(fieldtypes(T)) do F
@@ -92,3 +93,4 @@ function filter_tuple_type(T::Type{<: Tuple})
     end
     return Tuple{t...}
 end
+filter_tuple_type(T::Type) = T

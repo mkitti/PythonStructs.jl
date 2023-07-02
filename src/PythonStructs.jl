@@ -7,6 +7,7 @@ library in Julia.
 module PythonStructs
 
 export PythonStruct, pack, calcsize, unpack
+export pack_into, unpack_from
 # Modifiers
 export NativeModifier, NativeStandardModifier
 export LittleEndianModifier, BigEndianModifier

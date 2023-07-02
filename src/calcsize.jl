@@ -26,4 +26,4 @@ function calcsize(s::Type{<: PythonStruct{T,<: Modifier{<:Any, <:Any, :none}}}) 
 end
 calcsize(x::Type{T}; modifier = default_modifier) where T = calcsize(PythonStruct{T,typeof(modifier)})
 calcsize(x; modifier = default_modifier) = calcsize(typeof(x); modifier)
-
+calcsize(str::AbstractString) = calcsize(PythonStruct(str))

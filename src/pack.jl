@@ -91,3 +91,8 @@ function _pack(io::IO, s::PythonStruct{T, BigEndianModifier}) where T
     return io
 end
 
+
+function pack_into(ps, io::IO, offset, args...)
+    seek(io, offset)
+    pack(ps, io, args...)
+end

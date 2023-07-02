@@ -60,3 +60,8 @@ function _unpack(io::IO, ::Type{<:PythonStruct{T,BigEndianModifier}}) where T
     t = convert(T, t)
     return filter_tuple(t)
 end
+
+function unpack_from(ps, io::IO, offset=0)
+    seek(io, offset)
+    unpack(io, ps)
+end
