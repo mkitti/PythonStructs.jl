@@ -7,7 +7,7 @@ makedocs(;
     modules=[PythonStructs],
     authors="Mark Kittisopikul <markkitt@gmail.com> and contributors",
     repo="https://github.com/mkitti/PythonStructs.jl/blob/{commit}{path}#{line}",
-    sitename="PythonStruct.jl",
+    sitename="PythonStructs.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
         canonical="https://mkitti.github.io/PythonStructs.jl",

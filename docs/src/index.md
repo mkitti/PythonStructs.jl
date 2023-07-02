@@ -2,7 +2,7 @@
 CurrentModule = PythonStructs
 ```
 
-# PythonStruct
+# PythonStructs
 
 Documentation for [PythonStructs](https://github.com/mkitti/PythonStructs.jl).
 

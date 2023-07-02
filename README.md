@@ -1,10 +1,10 @@
-# PythonStruct.jl
+# PythonStructs.jl
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://mkitti.github.io/PythonStruct.jl/stable/)
-[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://mkitti.github.io/PythonStruct.jl/dev/)
-[![Build Status](https://github.com/mkitti/PythonStruct.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/mkitti/PythonStruct.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://mkitti.github.io/PythonStructs.jl/stable/)
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://mkitti.github.io/PythonStructs.jl/dev/)
+[![Build Status](https://github.com/mkitti/PythonStructs.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/mkitti/PythonStructs.jl/actions/workflows/CI.yml?query=branch%3Amain)
 
-PythonStruct.jl implements a similar API to Python's [`struct` standard library](https://docs.python.org/3/library/struct.html) in Julia. This package does not use any Python components and does not depend on PyCall.jl or PythonCall.jl.
+PythonStructs.jl implements a similar API to Python's [`struct` standard library](https://docs.python.org/3/library/struct.html) in Julia. This package does not use any Python components and does not depend on PyCall.jl or PythonCall.jl.
 
 The current design centers around the `PythonStruct{T,M}` type. `T` represents the underlying Julia struct type. `M` is a `PythonStructs.Modifier` type that has type parameters for byte order, size mapping, and alignment.
 
