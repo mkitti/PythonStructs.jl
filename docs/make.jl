@@ -1,16 +1,16 @@
-using PythonStruct
+using PythonStructs
 using Documenter
 
-DocMeta.setdocmeta!(PythonStruct, :DocTestSetup, :(using PythonStruct); recursive=true)
+DocMeta.setdocmeta!(PythonStructs, :DocTestSetup, :(using PythonStructs); recursive=true)
 
 makedocs(;
-    modules=[PythonStruct],
+    modules=[PythonStructs],
     authors="Mark Kittisopikul <markkitt@gmail.com> and contributors",
-    repo="https://github.com/mkitti/PythonStruct.jl/blob/{commit}{path}#{line}",
+    repo="https://github.com/mkitti/PythonStructs.jl/blob/{commit}{path}#{line}",
     sitename="PythonStruct.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://mkitti.github.io/PythonStruct.jl",
+        canonical="https://mkitti.github.io/PythonStructs.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -20,6 +20,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/mkitti/PythonStruct.jl",
+    repo="github.com/mkitti/PythonStructs.jl",
     devbranch="main",
 )

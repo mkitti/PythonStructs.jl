@@ -1,14 +1,14 @@
 ```@meta
-CurrentModule = PythonStruct
+CurrentModule = PythonStructs
 ```
 
 # PythonStruct
 
-Documentation for [PythonStruct](https://github.com/mkitti/PythonStruct.jl).
+Documentation for [PythonStructs](https://github.com/mkitti/PythonStructs.jl).
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [PythonStruct]
+Modules = [PythonStructs]
 ```
