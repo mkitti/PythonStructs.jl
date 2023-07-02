@@ -86,7 +86,7 @@ PythonStruct{Tuple{Int32, Int32, Int16}, LittleEndianModifier}((1, 2, 3))
 ## Modifiers
 
 | Python struct character | Byte order | Size | Alignment | Constant Name |
-|---|---|---|
+|---|---|---|---|---|
 | @ | `:native`        | `:native`   | `:native` | NativeModifier         |
 | = | `:native`        | `:standard` | `:none`   | NativeStandardModifier |
 | < | `:little_endian` | `:standard `| `:none`   | LittleEndianModifier   |
@@ -96,7 +96,7 @@ PythonStruct{Tuple{Int32, Int32, Int16}, LittleEndianModifier}((1, 2, 3))
 ## Type Mappings
 
 | Python struct character | Native size type | Standard size type | * |
-|---|---|---|
+|---|---|---|---|
 | x | PythonStructs.NullByte | PythonStructs.NullByte | |
 | c | `Cchar`            | `Int8`            | |
 | b | `Cchar`            | `Int8`            | |
