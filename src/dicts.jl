@@ -18,7 +18,7 @@ const format_dict = Base.ImmutableDict(
     'e' => Float16,
     'f' => Cfloat,
     'd' => Cdouble,
-    's' => NTuple{1, Cchar},
+    's' => StaticString{1},
     'p' => NTuple{1, Cchar}, # Pascal string, count length as bytes
     'P' => Ptr{Cvoid}
 )
@@ -43,7 +43,7 @@ const format_standard_dict = Base.ImmutableDict(
     'e' => Float16,
     'f' => Float32,
     'd' => Float64,
-    's' => NTuple{1, Int8},
+    's' => StaticString{1},
     'p' => NTuple{1, Int8}, # Pascal string, count length as bytes
     'P' => Ptr{Nothing}
 )
@@ -62,6 +62,6 @@ const reverse_standard_dict = Base.ImmutableDict(
     Float16 => 'e',
     Float32 => 'f',
     Float64 => 'd',
-    NTuple{1, Int8} => 's',
+    StaticString{1} => 's',
     Ptr{Cvoid} => 'P'
 )

@@ -14,6 +14,8 @@ export LittleEndianModifier, BigEndianModifier
 # String macro
 export @pystruct_str
 
+using StaticStrings
+
 include("Modifier.jl")
 include("PythonStruct.jl")
 include("accessory_types.jl")

@@ -44,7 +44,9 @@ function python_struct_lower_to_tuple_type(pystruct_string::AbstractString, dict
                 push!(types, ZeroCount{dict[c]})
             else
                 if c == 's'
-                    push!(types, NTuple{n,UInt8})
+                    push!(types, StaticString{n})
+                elseif c == 'p'
+                    error("Pascal strings, 'p', have not been implemented.")
                 else
                     for i in 1:n
                         push!(types, dict[c])
