@@ -29,11 +29,10 @@ Convert a Python struct string to a `PythonStruct` type.
 *Private API*
 """
 function python_struct_to_type(pystruct_string::AbstractString, m::Modifier)
-    pystruct_string_lowered = python_struct_lower(pystruct_string)
     type = if m.size == :standard
-        python_struct_to_standard_type(pystruct_string_lowered)
+        python_struct_to_standard_type(pystruct_string)
     else
-        python_struct_to_native_type(pystruct_string_lowered)
+        python_struct_to_native_type(pystruct_string)
     end
     return PythonStruct{type, typeof(m)}
 end

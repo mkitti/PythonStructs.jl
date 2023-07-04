@@ -1,29 +1,4 @@
 """
-    python_struct_to_type(pystruct_string::AbstractString, dict::AbstractDict)
-
-Convert a Python struct string to be a Julia `Tuple` type.
-
-*Private API*
-"""
-function python_struct_to_type(pystruct_string::AbstractString, dict::AbstractDict)
-    types = DataType[]
-    skip = false
-    for format_char in pystruct_string
-        if format_char == '0'
-            skip = true
-            continue
-        end
-        if skip
-            push!(types, ZeroCount{dict[format_char]})
-            skip = false
-            continue
-        end
-        push!(types, dict[format_char])
-    end
-    return Tuple{types...}
-end
-
-"""
     python_struct_to_native_type(pystruct_string::AbstractString)
 
 Use [`python_struct_to_type`](@ref) with the native format dictionary.
@@ -31,7 +6,7 @@ Use [`python_struct_to_type`](@ref) with the native format dictionary.
 *Private API*
 """
 function python_struct_to_native_type(pystruct_string::AbstractString)
-    return python_struct_to_type(pystruct_string, format_dict)
+    return python_struct_lower_to_tuple_type(pystruct_string, format_dict)
 end
 
 """
@@ -42,19 +17,17 @@ Use [`python_struct_to_type`](@ref) with the standard format dictionary.
 *Private API*
 """
 function python_struct_to_standard_type(pystruct_string::AbstractString)
-    return python_struct_to_type(pystruct_string, format_standard_dict)
+    return python_struct_lower_to_tuple_type(pystruct_string, format_standard_dict)
 end
 
 """
-    python_struct_lower(pythonstruct_string::AbstractString)
+    python_struct_lower_to_tuple_type(pystruct_string::AbstractString, dict::AbstractDict)
 
-Convert a general Python struct string into a simpler form. Numbers are parsed
-and are translated into repeated type characters. Zero count types are retained.
-
-*Private API*
+Convert python struct string to a Tuple{...} type by encoding each character
+or string as a component type.
 """
-function python_struct_lower(pystruct_string::AbstractString)
-    output_buffer = IOBuffer()
+function python_struct_lower_to_tuple_type(pystruct_string::AbstractString, dict::AbstractDict)
+    types = DataType[]
     num_buffer = IOBuffer()
     for c in pystruct_string
         if isdigit(c)
@@ -68,17 +41,21 @@ function python_struct_lower(pystruct_string::AbstractString)
             end
             truncate(num_buffer, 0)
             if n == 0
-                write(output_buffer, '0')
-                write(output_buffer, c)
+                push!(types, ZeroCount{dict[c]})
             else
-                for i in 1:n
-                    write(output_buffer, c)
+                if c == 's'
+                    push!(types, NTuple{n,UInt8})
+                else
+                    for i in 1:n
+                        push!(types, dict[c])
+                    end
                 end
             end
         end
     end
-    return String(take!(output_buffer))
+    Tuple{types...}
 end
+
 
 function filter_tuple(t::Tuple)
     filter(t) do e

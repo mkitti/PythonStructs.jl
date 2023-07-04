@@ -13,6 +13,11 @@ unpack(PS::Type{<: PythonStruct}) = Base.Fix1(unpack, PS)
 unpack(python_struct::AbstractString, args...) = unpack(PythonStruct(python_struct), args...)
 
 @inline unpack(io::IO, x) = Base.read(io, x)
+function unpack(io::IO, ::Type{NTuple{N,T}}) where {N,T}
+    ntuple(N) do i
+        read(io, T)
+    end
+end
 
 # padding
 function _unpack(io::IO, ::Type{<:PythonStruct{T,NativeModifier}}) where T

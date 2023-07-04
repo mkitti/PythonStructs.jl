@@ -23,6 +23,9 @@ function pystruct_string(s::Type{T}) where T
         if F <: ZeroCount
             write(iob, '0')
             write(iob, reverse_standard_dict[eltype(F)])
+        elseif F <: NTuple{<: Any, UInt8}
+            write(iob, string(fieldcount(F)))
+            write(iob, 's')
         else
             write(iob, reverse_standard_dict[F])
         end

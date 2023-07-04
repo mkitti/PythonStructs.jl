@@ -33,6 +33,11 @@ function pack(S::Type{<: PythonStruct})
     Base.Fix1(pack, S)
 end
 @inline pack(io::IO, x) = Base.write(io, x)
+function pack(io::IO, x::NTuple{N,T}) where {N,T}
+    sum(x) do element
+        pack(io, element)
+    end
+end
 
 # Internal packing machinery
 
